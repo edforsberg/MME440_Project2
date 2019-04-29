@@ -54,19 +54,8 @@ def Data1():
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
 
+
 def Data2():
-    nrFeatures = 2
-    mislabelProportion = 0
-    nrClasses = 3
-    nrMislabelPoints = 40
-    lows = [[0, 0], [5, 0], [0, -5]]
-    highs = [[6, 5], [0, 5], [6, 4]]
-    dataPoints = [10000, 2000, 2000]
-
-    Xdat, Ydat = GenerateUniformData(lows, highs, dataPoints)
-    return Xdat, Ydat
-
-def Data3():
     nrFeatures = 2
     mislabelProportion = 0
     nrClasses = 6
@@ -78,17 +67,29 @@ def Data3():
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
 
-def Data4():    
+def Data3():    
     nrVars = 2
     radius = 6
-    nrClasses = 4
+    nrClasses = 8  
     sigma = np.ones([nrClasses, nrVars])
     means = np.ones([nrClasses, nrVars])
-    for i in range (0,nrClasses-1):
+    for i in range (0,nrClasses):
         means[i,0] = np.cos(i*np.pi*2/nrClasses)*radius
         means[i,1] = np.sin(i*np.pi*2/nrClasses)*radius
-    dataPoints = np.ones(1,nrClasses)*1000
+    dataPoints = [1000,1000,1000,1000,1000,1000,1000,1000]#np.ones([nrClasses,1])*1000
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
+    return Xdat, Ydat
+
+def Data4():
+    nrFeatures = 2
+    mislabelProportion = 0
+    nrClasses = 3
+    nrMislabelPoints = 40
+    lows = [[0, 0], [5, 0], [0, -5]]
+    highs = [[6, 5], [0, 5], [6, 4]]
+    dataPoints = [10000, 2000, 2000]
+
+    Xdat, Ydat = GenerateUniformData(lows, highs, dataPoints)
     return Xdat, Ydat
   
 
