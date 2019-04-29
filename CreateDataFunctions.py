@@ -23,6 +23,24 @@ def GenerateGaussianData(means, stds, datapoints):
     Xdata, Ydata = shuffle(Xdata, Ydata)
     return Xdata, Ydata
 
+def GenerateUniformData(lows, highs, datapoints):
+    nrClasses = len(lows)
+    nrFeatures = len(lows[0])
+    Xdata = []
+    Ydata = []
+    for i in range(nrClasses):
+        for j in range(datapoints[i]):
+            features = []
+            for k in range(nrFeatures):
+                features.append(np.random.uniform(
+                    low = lows[i][k], high = highs[i][k], size=None))
+            Xdata.append(features)
+            Ydata.append(i)
+    Xdata = np.array(Xdata)
+    Ydata = np.array(Ydata)
+    Xdata, Ydata = shuffle(Xdata, Ydata)
+    return Xdata, Ydata
+    
 
 def Data1():
     nrFeatures = 2
@@ -35,3 +53,16 @@ def Data1():
 
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
+
+def Data2():
+    nrFeatures = 2
+    mislabelProportion = 0
+    nrClasses = 4
+    nrMislabelPoints = 40
+    lows = [[0, 0], [-3.5, 1.5], [5, 0], [0, -5]]
+    highs = [[3, 2], [0, 5], [6, 4], [6, 2]]
+    dataPoints = [10000, 2000, 2000, 500]
+
+    Xdat, Ydat = GenerateUniformData(lows, highs, dataPoints)
+    return Xdat, Ydat
+
