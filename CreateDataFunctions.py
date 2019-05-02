@@ -49,7 +49,7 @@ def Data_gussian_cluster():
     nrMislabelPoints = 40
     means = [[0, 0], [-3.5, 1.5], [5, 0], [0, -5]]
     sigma = [[1, 1], [1, 1], [1, 1], [1, 1]]
-    dataPoints = [10000, 2000, 2000, 500]
+    dataPoints = [10, 10, 10, 10]
 
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
