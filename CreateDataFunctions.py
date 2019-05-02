@@ -42,7 +42,7 @@ def GenerateUniformData(lows, highs, datapoints):
     return Xdata, Ydata
     
 
-def Data_gussian_clusters():
+def Data_gussian_cluster():
     nrFeatures = 2
     mislabelProportion = 0
     nrClasses = 4
