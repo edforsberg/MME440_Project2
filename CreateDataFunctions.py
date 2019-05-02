@@ -2,8 +2,40 @@ import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
 import random
+import math
 from sklearn.utils import shuffle
 
+def CreateCircleCluster(nrDataPoints,radius,center,noise,classNr,nrFeatures,grid):
+    firstCircleFeature = random.randint(0,(nrFeatures-1))
+    secondCircleFeature = (firstCircleFeature + 1) % nrFeatures
+    Xdata = []
+    Ydata = []
+
+    for i in range(nrDataPoints):
+        features = []
+        randR = random.random()*2*math.pi
+        for k in range(nrFeatures):
+            if k == firstCircleFeature:
+                features.append(center[0]+ math.cos(randR)*radius+random.random()*noise)
+            elif k == secondCircleFeature:
+                features.append(center[1]+ math.sin(randR)*radius+random.random()*noise)
+            else:
+                features.append(grid[k]*random.random())
+        Xdata.append(features)
+        Ydata.append(classNr)
+    Xdata = np.array(Xdata)
+    Ydata = np.array(Ydata)
+    return Xdata,Ydata
+
+def ThreeCirclesData():
+    A,Ac = CreateCircleCluster(1000,0.1,(0,0),0.2,0,2,(10,10))
+    B,Bc = CreateCircleCluster(1000,3,(0,0),0.2,1,2,(10,10))
+    Mat = np.concatenate((A, B))
+    MatC =np.concatenate((Ac, Bc))
+    C,Cc = CreateCircleCluster(1000,7,(0,0),0.2,2,2,(10,10))
+    Mat = np.concatenate((Mat, C))
+    MatC = np.concatenate((MatC, Cc))
+    return Mat,MatC
 
 def GenerateGaussianData(means, stds, datapoints):
     nrClasses = len(means)
