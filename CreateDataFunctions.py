@@ -42,7 +42,7 @@ def GenerateUniformData(lows, highs, datapoints):
     return Xdata, Ydata
     
 
-def Data1():
+def Data_gussian_clusters():
     nrFeatures = 2
     mislabelProportion = 0
     nrClasses = 4
@@ -67,7 +67,7 @@ def Data2():
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
 
-def Data3():    
+def Data_circ_cluster():    
     nrVars = 2
     radius = 6
     nrClasses = 8  
@@ -80,7 +80,7 @@ def Data3():
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
 
-def Data4():
+def Data_uniform_cluster():
     nrFeatures = 2
     mislabelProportion = 0
     nrClasses = 3
@@ -92,4 +92,41 @@ def Data4():
     Xdat, Ydat = GenerateUniformData(lows, highs, dataPoints)
     return Xdat, Ydat
   
+def Data_one_cluster():    
+    nrVars = 2
+    radius = 6
+    nrClasses = 1  
+    sigma = np.ones([nrClasses, nrVars])
+    means = np.ones([nrClasses, nrVars])
+    for i in range (0,nrClasses):
+        means[i,0] = np.cos(i*np.pi*2/nrClasses)*radius
+        means[i,1] = np.sin(i*np.pi*2/nrClasses)*radius
+    dataPoints = [1000]
+    Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
+    return Xdat, Ydat
 
+def Data_separated_clusters():    
+    nrVars = 2
+    radius = 12
+    nrClasses = 8  
+    sigma = np.ones([nrClasses, nrVars])
+    means = np.ones([nrClasses, nrVars])
+    for i in range (0,nrClasses):
+        means[i,0] = np.cos(i*np.pi*2/nrClasses)*radius
+        means[i,1] = np.sin(i*np.pi*2/nrClasses)*radius
+    dataPoints = [1000,1000,1000,1000,1000,1000,1000,1000]#np.ones([nrClasses,1])*1000
+    Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
+    return Xdat, Ydat
+
+def Data_many_clusters():    
+    nrVars = 2
+    radius = 6
+    nrClasses = 8  
+    sigma = np.ones([nrClasses, nrVars])
+    means = np.ones([nrClasses, nrVars])
+    for i in range (0,nrClasses):
+        means[i,0] = np.cos(i*np.pi*2/nrClasses)*radius
+        means[i,1] = np.sin(i*np.pi*2/nrClasses)*radius
+    dataPoints = [1000,1000,1000,1000,1000,1000,1000,1000]#np.ones([nrClasses,1])*1000
+    Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
+    return Xdat, Ydat
