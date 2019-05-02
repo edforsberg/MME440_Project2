@@ -74,19 +74,23 @@ def GenerateUniformData(lows, highs, datapoints):
     return Xdata, Ydata
     
 
-def Data_gussian_cluster():
-    nrFeatures = 2
+def Data_gussian_cluster(nrFeatures = 2, nrClasses = 4, nr_data_points = 10):
     mislabelProportion = 0
-    nrClasses = 4
     nrMislabelPoints = 40
     means = [[0, 0], [-3.5, 1.5], [5, 0], [0, -5]]
-    sigma = [[1, 1], [1, 1], [1, 1], [1, 1]]
-    dataPoints = [10, 10, 10, 10]
-
+    sigma = [[1, 1]] * nrClasses
+    dataPoints = [nr_data_points] * nrClasses
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
 
-
+def Gaussian_cluster_grid(nr_features = 2, grid_size = 4, nr_data_points = 10, scale=5, sigma=1):
+    positions = [(d*scale).flatten().tolist() for d in np.mgrid[[slice(1,grid_size+1)]*nr_features]]
+    means = list(list(a) for a in zip(*positions))
+    sigmas = [[sigma]*nr_features] * grid_size**nr_features
+    dataPoints = [nr_data_points] * grid_size**nr_features
+    Xdat, Ydat = GenerateGaussianData(means, sigmas, dataPoints)
+    return Xdat, Ydat
+    
 def Data2():
     nrFeatures = 2
     mislabelProportion = 0
