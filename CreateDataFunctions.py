@@ -166,3 +166,17 @@ def Data_many_clusters():
     dataPoints = [1000,1000,1000,1000,1000,1000,1000,1000]#np.ones([nrClasses,1])*1000
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
+
+def create_rings_of_clusters(classes_per_ring = 8, nr_rings = 3, radius=12, points_per_cluster=100):  
+    nrVars = 2
+    sigma = np.ones([classes_per_ring*nr_rings, nrVars])
+    means = np.ones([classes_per_ring*nr_rings, nrVars])
+    for i in range(1,nr_rings+1):
+        for j in range(classes_per_ring):
+            means[j + classes_per_ring*(i-1),0] = np.cos(j*np.pi*2/classes_per_ring)*radius*i
+            means[j + classes_per_ring*(i-1),1] = np.sin(j*np.pi*2/classes_per_ring)*radius*i
+            
+    dataPoints = [points_per_cluster]*nr_rings*classes_per_ring
+    
+    Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
+    return Xdat, Ydat
