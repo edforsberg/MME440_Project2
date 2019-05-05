@@ -83,12 +83,12 @@ def Data_gussian_cluster(nrFeatures = 2, nrClasses = 4, nr_data_points = 10):
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
 
-def Data_gussian_cluster_hard():
+def Data_gussian_cluster_hard(nrFeatures = 2, nr_data_points = 10):
     mislabelProportion = 0
     nrMislabelPoints = 40
-    means = [[0, 0], [-3.5, 1.5], [5, 0], [0, -5],[-3, -1.5], [-3.5, 1.5], [4, 2], [1, 5]]
+    means = [[0, 0], [-3.5, 1.5], [5, 0], [0, -5],[-3, -1.5], [-2, 5], [4, 2], [1, 5]]
     sigma = [[1, 0.8],[1.2, 1],[1, 1.5],[1, 1]]*2
-    dataPoints = [nr_data_points] * nrClasses
+    dataPoints = [nr_data_points] * 8
     Xdat, Ydat = GenerateGaussianData(means, sigma, dataPoints)
     return Xdat, Ydat
 
