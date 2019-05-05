@@ -1,0 +1,9 @@
+data1, c1 = df.Data_gussian_cluster(nr_data_points = 1000)
+data2, c2 = df.Data_separated_clusters()
+data3, c3 = df.Gaussian_cluster_grid(grid_size=10, scale=8, nr_data_points=10, sigma=0.6)
+data4, c4 = df.ThreeCirclesData()
+
+data5_grid = 4
+data5_nr_features = 3
+data5, c5 = df.Gaussian_cluster_grid(grid_size=data5_grid, scale=25, nr_data_points=10, nr_features=data5_nr_features, sigma=0.5)
+data6, c6 = df.Data_gussian_cluster_hard(nr_data_points = 500)
